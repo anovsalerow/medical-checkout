@@ -20,13 +20,6 @@ export const Navbar = () => {
                 <Link to={LINKS.homepage} className={`${styles.logo} `}>
                     Shopdoc
                 </Link>
-                <button
-                    className={styles.hamburger}
-                    onClick={toggleMenu}
-                    aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-                >
-                    <Image styles={styles.hamburger} src={hamburgerIcon} altText="Menu"/>
-                </button>
                 <div className={`${styles.nav_content} ${isMenuOpen ? styles.open : ''}`}>
                     <ul className={styles.nav_links}>
                         {NAVBAR_LINKS.map(({ text, path }, index) => (
@@ -37,15 +30,25 @@ export const Navbar = () => {
                         </li>
                         ))}
                     </ul>
+                </div>
+                <div className={styles.icon_container}>
                     <ul className={styles.icon_links}>
-                        {ICON_LINKS.map(({ name, icon, path }, index) => (
+                        {ICON_LINKS.map(({ name, icon, path, redMark }, index) => (
                             <li key={index}>
-                                <a href={path}>
+                                <Link to={path} className={redMark ? styles.red_mark : ''}>
                                     <img src={icon} alt={`${name} logo`} />
-                                </a>
+                                    {redMark && <span />}
+                                </Link>
                             </li>
                         ))}
                     </ul>
+                    <button
+                        className={styles.hamburger}
+                        onClick={toggleMenu}
+                        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                    >
+                        ☰
+                    </button>
                 </div>
             </div>
         </nav>
