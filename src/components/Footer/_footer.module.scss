@@ -1,0 +1,136 @@
+.footer {
+  
+  background-color: #031525;
+  font-family: Ubuntu, sans-serif;
+  min-width: 375px;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 60px 20px 0;
+    max-width: 375px;
+    min-height: 420px;
+    box-sizing: border-box;
+  }
+
+  .social_list {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+    padding: 0;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    width: 216px;
+
+    .title {
+      font-weight: 500;
+      font-size: 20px;
+      margin: 0 0 24px 0;
+      color: #fff;
+    }
+
+    .item {
+      max-width: 180px;
+      margin: 0 0 18px 0;
+      text-align: center;
+
+      span {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 400;
+        opacity: 0.6;
+      }
+
+      a {
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 400;
+        opacity: 0.6;
+
+        &:hover {
+          text-decoration: none;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .copyright {
+    display: block;
+    text-align: center;
+    font-family: Ubuntu, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    padding: 27px 20px;
+    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.25);
+  }
+
+  @media (min-width: 768px) {
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      justify-items: center;
+      align-items: start;
+      max-width: 768px;
+      
+      .links {
+        padding: 0 120px;
+      }
+    }
+
+    .list {
+      align-items: start;
+
+      .item {
+        text-align: left;
+      }
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    .wrapper {
+      max-width: 992px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+
+  }
+
+  @media (min-width: 1024px) {
+    .wrapper {
+      max-width: 1024px;
+    }
+
+    .list {
+      .title {
+        span {
+          font-size: 20px;
+        }
+      }
+
+      li a {
+        font-size: 16px;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    .wrapper {
+      max-width: 1440px;
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+}
