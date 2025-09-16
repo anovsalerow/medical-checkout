@@ -56,18 +56,21 @@ const SOCIAL_LIST = [
 
 const ICON_LINKS = [
     {
-        name: 'instagram',
+        name: 'search',
         icon: searchIcon,
-        path: '/'
+        path: '/',
+        redMark: false
     },
     {
-        name: 'facebook',
+        name: 'basket',
         icon: basketIcon,
-        path: '/'
+        path: '/',
+        redMark: true
     },{
-        name: 'twitter',
+        name: 'profile',
         icon: profileIcon,
-        path: '/'
+        path: '/',
+        redMark: false
     }
 ];
 
