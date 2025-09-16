@@ -1,0 +1,103 @@
+.advantages {
+    padding: 120px 20px;
+    margin: 0 auto;
+    font-family: Ubuntu, sans-serif;
+    min-width: 375px;
+
+    .text_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 275px;
+        
+        span {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .description {
+            font-size: 16px;
+            font-weight: 400;
+            color: #aaa;
+        }
+    }
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: 40px;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .image_background {
+        position: relative;
+        width: 72px;
+        height: 72px;
+        background-image: url("../../assets/svg/ellipse_2.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .adventure_image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: contain;
+    }
+
+}
+
+
+@media (min-width: 768px) {
+    .advantages {
+        max-width: 768px;
+
+        .text_container {
+            max-width: 185px;
+        }
+
+        .list {
+            flex-direction: row;
+            justify-content: space-around;
+            gap: unset;
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .advantages {
+        max-width: 992px;
+
+        .text_container {
+            max-width: 275px;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .advantages {
+        max-width: 1024px;
+
+        .list {
+            justify-content: center;
+            gap: 152px;
+        }
+    }
+}
