@@ -36,18 +36,15 @@
         border: none;
         cursor: pointer;
         padding: 0;
-
-        img {
-            width: 30px;
-            height: 30px;
-        }
+        color: #fff;
+        font-size: 24px;
+        line-height: 24px;
     }
 
     .nav_content {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 80%;        
 
         .nav_links {
             display: flex;
@@ -71,25 +68,46 @@
                 }
             }
         }
+    }
 
-        .icon_links {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 40px;
+    .icon_container {
+        display: flex;
+        gap: 40px;
+    }
 
-            li {
-                a {
-                    display: flex;
-                }
+    .icon_links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 40px;
 
-                img {
-                    width: 24px;
-                    height: 24px;
-                    object-fit: contain;
-                }
+        li {
+            a {
+                display: flex;
             }
+
+            img {
+                width: 24px;
+                height: 24px;
+                object-fit: contain;
+            }
+        }
+    }
+
+    .red_mark {
+        position: relative;
+
+        span {
+            position: absolute;
+            top: 0%;
+            left: 64%;
+            box-sizing: border-box;
+            border: 1px solid #5a9bfe;
+            background-color: #ff2b2b;
+            border-radius: 50%;
+            width: 8px;
+            height: 8px;
         }
     }
 
@@ -160,7 +178,6 @@
         }
 
         .nav_content {
-            width: 82%;
             .logo{
                 display: flex;
             }
@@ -171,19 +188,11 @@
         .wrapper {
             max-width: 1024px;
         }
-
-        .nav_content {
-            width: 80%;
-        }
     }
 
     @media screen and (min-width: 1440px) {
         .wrapper {
             max-width: 1440px;
-        }
-
-        .nav_content {
-            width: 70%;
         }
     }
 }
