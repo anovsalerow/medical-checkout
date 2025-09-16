@@ -1,0 +1,189 @@
+.navbar {
+    font-family: Ubuntu, sans-serif;
+    background-color: #5a9bfe;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    min-width: 375px;
+    
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 20px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        min-height: 70px;
+    }
+
+    .logo {
+        display: flex;
+        font-size: 20px;
+        font-weight: 400;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+
+        &:hover {
+          text-decoration: none;
+        }
+    }
+
+    .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+
+        img {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .nav_content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;        
+
+        .nav_links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 40px;
+
+            li {
+                a {
+                    display: flex;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #fff;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: none;
+                        color: #0066cc;
+                    }
+                }
+            }
+        }
+
+        .icon_links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 40px;
+
+            li {
+                a {
+                    display: flex;
+                }
+
+                img {
+                    width: 24px;
+                    height: 24px;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 979px) {
+        .logo {
+            display: flex;
+        }
+
+        .hamburger {
+            display: block;
+        }
+
+        .nav_content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            width: 80%;
+
+            &.open {
+                display: flex;
+                background-color: #5a9bfe;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .nav_links {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+
+                li {
+                    a {
+                        font-size: 14px;
+                        display: block;
+                        padding: 10px 0;
+                    }
+                }
+            }
+
+            .icon_links {
+                flex-direction: column;
+                width: 100%;
+                justify-content: center;
+                gap: 20px;
+
+                li {
+                    img {
+                        width: 28px;
+                        height: 28px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: 980px) {
+        .wrapper {
+            max-width: 980px;
+            padding: 15px 120px;
+        }
+
+        .nav_content {
+            width: 82%;
+            .logo{
+                display: flex;
+            }
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .wrapper {
+            max-width: 1024px;
+        }
+
+        .nav_content {
+            width: 80%;
+        }
+    }
+
+    @media screen and (min-width: 1440px) {
+        .wrapper {
+            max-width: 1440px;
+        }
+
+        .nav_content {
+            width: 70%;
+        }
+    }
+}
