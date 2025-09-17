@@ -20,4 +20,18 @@ const ADVANTAGES = [
     },
 ];
 
-export {ADVANTAGES};
+const ORDER_SUMMARY = [
+    {title: 'Capsul White', type: "15 Capsul", color: 'White', amount: '4x', costs: '$140'},
+    {title: 'Rainbow Drugs', type: "10 Capsul", color: 'White', amount: '4x', costs: '$140'},
+    {title: 'Rainbow Drugs White', type: "5 Capsul", color: 'White', amount: '4x', costs: '$140'},
+    {title: 'Zaitun Olive Oil', type: "2 Bottle", color: 'White', amount: '4x', costs: '$140'},
+    {title: 'Acetylcysteine Pill', type: "15 Capsul", color: 'White', amount: '4x', costs: '$140'},
+];
+
+const CHECKOUT_TOTAL = [
+    {title: 'Sub total', costs: '$240'},
+    {title: 'Shipping Fee', costs: '$40'},
+    {title: 'Total', costs: '$280'},
+];
+
+export {ADVANTAGES, ORDER_SUMMARY, CHECKOUT_TOTAL};
