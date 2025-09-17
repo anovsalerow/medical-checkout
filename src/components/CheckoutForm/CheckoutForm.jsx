@@ -6,7 +6,7 @@ import {InputRadio} from '../InputRadio';
 import {InputPromo} from '../InputPromo';
 import { CheckoutTotal } from '../CheckoutTotal';
 import {OrderSummary} from '../OrderSummary';
-import { SubmitButton } from '../SubmitButton';
+import {SubmitButton} from '../SubmitButton';
 import {ORDER_SUMMARY, CHECKOUT_TOTAL} from '../../constants';
 import styles from './_checkoutForm.module.scss';
 
