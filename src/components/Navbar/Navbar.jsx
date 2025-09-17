@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Image } from '../Image';
 import {NAVBAR_LINKS, LINKS, ICON_LINKS} from '../../constants';
 import styles from './_navbar.module.scss';
-import hamburgerIcon from '../../assets/svg/burger-menu.svg';
 
 
 export const Navbar = () => {
