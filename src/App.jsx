@@ -4,7 +4,7 @@ import './App.css';
 import { LINKS } from './constants/constants';
 import { Footer } from './components/Footer';
 import { Main } from './components/Main';
-import { CheckoutPage } from './pages/CheckoupPage/CheckoutPage';
+import { CheckoutPage } from './pages/CheckoutPage';
 import { Header } from './components/Header';
 
 function App() {
