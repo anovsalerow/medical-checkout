@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    border: 1px solid rgba(15, 13, 35, 0.2);
+    box-sizing: border-box;
+    min-width: 245px;
+    max-width: 515px;
+    height: 56px;
+    padding: 0 12px;
+    margin: 0;
+    background-color: #fff;
+    cursor: pointer;
+
+    &:hover {
+        border-color: rgba(90, 155, 254, 1);
+    }
+
+    .rectangle {
+        width: 32px;
+        height: 20px;
+        margin: 0 12px 0 0;
+        border-radius: 10px;
+        background: linear-gradient(137.45deg, rgba(90, 155, 254, 1),rgba(90, 155, 254, 0) 100%);
+    }
+
+    // input
+
+    .text {
+        width: calc(100% - 63px);
+    }
+}
