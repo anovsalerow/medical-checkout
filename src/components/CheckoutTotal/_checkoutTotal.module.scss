@@ -13,11 +13,15 @@
         align-items: center;
         border-bottom: 1px solid #aaa;
         padding: 32px 0 16px;
-        margin: 0 24px;
+        margin: 0 auto;
+
+        &:first-child {
+            padding: 52px 0 16px;
+        }
 
         &:last-child {
             border-bottom: none;
-            padding: 64px 0 0;
+            padding: 64px 0 20px;
         }
     }
 
