@@ -1,5 +1,4 @@
 import {useForm} from 'react-hook-form';
-import Joi from 'joi';
 import {joiResolver} from '@hookform/resolvers/joi';
 import {Input} from '../Input';
 import {InputRadio} from '../InputRadio';
@@ -8,18 +7,9 @@ import { CheckoutTotal } from '../CheckoutTotal';
 import {OrderSummary} from '../OrderSummary';
 import {SubmitButton} from '../SubmitButton';
 import {ORDER_SUMMARY, CHECKOUT_TOTAL} from '../../constants';
+import { FormValidationSchema } from '../Schemas/FormValidationSchema.js';
 import styles from './_checkoutForm.module.scss';
 
-const schema = Joi.object({
-    fullName: Joi.string().min(3).max(100).required().label('Full Name'),
-    email: Joi.string().email({tlds: {allow: false}}).required().label('Email'),
-    phoneNumber: Joi.string().pattern(/^\+?[0-9\s\-()]{7,20}$/).required().label('Phone number'),
-    address: Joi.string().min(5).max(200).required().label('Street Address'),
-    city: Joi.string().min(2).max(100).required().label('City'),
-    zipCode: Joi.string().pattern(/^[0-9]{4,10}$/).required().label('Zip Code'),
-    сountry: Joi.string().min(5).max(100).required().label('Country'),
-    promoCode: Joi.string().alphanum().min(5).max(20).optional().label('Promotion and Discount code')
-});
 
 const handleOnSubmit = (data) => {console.log(data)};
 
@@ -27,8 +17,8 @@ export const CheckoutForm = () => {
     const {
         register, 
         handleSubmit, 
-        formState: {errors, isValid}
-    } = useForm({resolver: joiResolver(schema), mode: 'onBlur'})
+        formState: {errors}
+    } = useForm({resolver: joiResolver(FormValidationSchema), mode: 'onBlur'})
 
     return (
         <form className={styles.form} onSubmit={handleSubmit(handleOnSubmit)}>
@@ -163,7 +153,7 @@ export const CheckoutForm = () => {
                         <CheckoutTotal data={CHECKOUT_TOTAL} />
                     </li>
                     <li className={styles.block_order__item}>
-                        <SubmitButton disabled={!isValid} text="Checkout"/>
+                        <SubmitButton text="Checkout"/>
                     </li>
                 </ul>
             </div>
