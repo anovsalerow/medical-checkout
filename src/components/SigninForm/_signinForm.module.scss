@@ -1,0 +1,33 @@
+.block {
+    &_input {
+        &__list {
+            display: flex;
+            flex-direction: column;
+            gap: 31px;
+            list-style: none;
+            padding: 0 20px 40px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            min-width: 375px;
+            max-width: 515px;
+            width: 100%;
+        }
+
+        &__title {
+            h2 {
+                font-family: Ubuntu, sans-serif;
+                font-size: 24px;
+                font-weight: 400;
+                color: #000;
+            }
+        }
+
+        &__item {
+            margin: 5px 0;
+
+            button {
+                min-width: 335px;
+            }
+        }
+    }
+}
