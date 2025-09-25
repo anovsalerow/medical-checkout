@@ -18,6 +18,10 @@ const NAVBAR_LINKS = [
 
 const LINKS = {
     homepage: '/',
+    about: '/about',
+    reviews: '/reviews',
+    contact: '/contact',
+    shop: '/shop',
     checkout: '/checkout',
     login: '/login'
 };
@@ -66,14 +70,14 @@ const ICON_LINKS = [
         redMark: false
     },
     {
-        name: 'basket',
+        name: 'cart',
         icon: basketIcon,
-        path: '/',
+        path: '/checkout',
         redMark: true
     },{
         name: 'profile',
         icon: profileIcon,
-        path: '/',
+        path: '/profile',
         redMark: false
     }
 ];
