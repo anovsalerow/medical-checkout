@@ -4,7 +4,7 @@ import {useForm} from 'react-hook-form';
 import { useDispatch, useSelector } from "react-redux";
 import { registrationUser } from "../../store/slices/authSlice.js";
 import {joiResolver} from '@hookform/resolvers/joi';
-import { SigninFormValidationSchema } from '../Schemas/SigninFormValidationSchema.js';
+import { SignFormValidationSchema } from '../Schemas/SignFormValidationSchema.js';
 import { Input } from "../Input/index.js";
 import { SubmitButton } from "../SubmitButton/index.js";
 import styles from './_signupForm.module.scss';
@@ -18,7 +18,7 @@ export const SignupForm = () => {
         register, 
         handleSubmit, 
         formState: {errors}
-    } = useForm({resolver: joiResolver(SigninFormValidationSchema), mode: 'onBlur'})
+    } = useForm({resolver: joiResolver(SignFormValidationSchema), mode: 'onBlur'})
 
 
     const handleOnSubmit = (data) => {
