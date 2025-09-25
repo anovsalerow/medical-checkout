@@ -24,7 +24,8 @@ const LINKS = {
     shop: '/shop',
     checkout: '/checkout',
     profile: '/profile',
-    login: '/login'
+    login: '/login',
+    registration: '/register'
 };
 
 const SHOPDOC = {
