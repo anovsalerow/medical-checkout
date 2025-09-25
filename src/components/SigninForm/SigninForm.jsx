@@ -56,7 +56,7 @@ export const SigninForm = () => {
                     />
                     {errors.password && <p className={styles.validation_error}>{errors.password.message}</p>}
                 </li>
-                <li className={styles.block_order__item}>
+                <li className={styles.block_input__item}>
                     <SubmitButton text={loading ? "Loading..." : "Login"}/>
                     {error && <p className={styles.validation_error}>{error}</p>}
                 </li>
