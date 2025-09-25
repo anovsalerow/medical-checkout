@@ -7,7 +7,7 @@ import { CheckoutTotal } from '../CheckoutTotal';
 import {OrderSummary} from '../OrderSummary';
 import {SubmitButton} from '../SubmitButton';
 import {ORDER_SUMMARY, CHECKOUT_TOTAL} from '../../constants';
-import { FormValidationSchema } from '../Schemas/FormValidationSchema.js';
+import { CheckoutFormValidationSchema } from '../Schemas/CheckoutFormValidationSchema.js';
 import styles from './_checkoutForm.module.scss';
 
 
@@ -18,7 +18,7 @@ export const CheckoutForm = () => {
         register, 
         handleSubmit, 
         formState: {errors}
-    } = useForm({resolver: joiResolver(FormValidationSchema), mode: 'onBlur'})
+    } = useForm({resolver: joiResolver(CheckoutFormValidationSchema), mode: 'onBlur'})
 
     return (
         <form className={styles.form} onSubmit={handleSubmit(handleOnSubmit)}>
