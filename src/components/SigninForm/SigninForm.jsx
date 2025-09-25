@@ -1,0 +1,66 @@
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import {useForm} from 'react-hook-form';
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../store/slices/authSlice.js";
+import {joiResolver} from '@hookform/resolvers/joi';
+import { SigninFormValidationSchema } from '../Schemas/SigninFormValidationSchema.js';
+import { Input } from "../Input/index.js";
+import { SubmitButton } from "../SubmitButton/index.js";
+import styles from './_signinForm.module.scss';
+
+export const SigninForm = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { loading, error, user } = useSelector((state) => state.auth);
+
+    const {
+        register, 
+        handleSubmit, 
+        formState: {errors}
+    } = useForm({resolver: joiResolver(SigninFormValidationSchema), mode: 'onBlur'})
+
+
+    const handleOnSubmit = (data) => {
+        dispatch(loginUser(data));
+    };
+
+    useEffect(() => {
+        if (user) {
+        navigate("/");
+        }
+    }, [user, navigate]);
+
+    return (
+        <form onSubmit={handleSubmit(handleOnSubmit)} className={styles.form}>
+            <ul className={styles.block_input__list}>
+                <li className={styles.block_input__item}>
+                    <Input 
+                        {...register('email')} 
+                        type='email' 
+                        name='email' 
+                        placeholder='Email Address' 
+                        legend='Email Address'
+                        autoComplete="email" 
+                    />
+                    {errors.email && <p className={styles.validation_error}>{errors.email.message}</p>}
+                </li>
+                <li className={styles.block_input__item}>
+                    <Input 
+                        {...register('password')} 
+                        type='password' 
+                        name='password' 
+                        placeholder='Password' 
+                        legend='Password'
+                        autoComplete="current-password"
+                    />
+                    {errors.password && <p className={styles.validation_error}>{errors.password.message}</p>}
+                </li>
+                <li className={styles.block_order__item}>
+                    <SubmitButton text={loading ? "Loading..." : "Login"}/>
+                    {error && <p className={styles.validation_error}>{error}</p>}
+                </li>
+            </ul>
+        </form>
+    );
+};
