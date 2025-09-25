@@ -26,6 +26,25 @@ export const loginUser = createAsyncThunk(
     }
 );
 
+export const registrationUser = createAsyncThunk(
+    "auth/registrationUser",
+    async ({ email, password }, { rejectWithValue }) => {
+        try {
+            const res = await fetch(`${urlBE}/register`, {
+                method: "POST",
+                credentials: "include",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (!res.ok) throw new Error("Email already exist");
+            return await res.json();
+        } catch (err) {
+            return rejectWithValue(err.message);
+        }
+    }
+)
+
 export const refreshToken = createAsyncThunk(
     "auth/refreshToken",
     async (_, { rejectWithValue }) => {
@@ -73,6 +92,12 @@ const authSlice = createSlice({
         })
         .addCase(loginUser.rejected, (state, action) => {
             state.error = action.payload || "Login failed";
+        })
+        .addCase(registrationUser.fulfilled, (state, action) => {
+            state.user = action.payload.user;
+        })
+        .addCase(registrationUser.rejected, (state, action) => {
+            state.error = action.payload || "Registration failed";
         })
         .addCase(logoutUser.fulfilled, (state) => {
             state.user = null;
