@@ -23,6 +23,7 @@ const LINKS = {
     contact: '/contact',
     shop: '/shop',
     checkout: '/checkout',
+    profile: '/profile',
     login: '/login'
 };
 
