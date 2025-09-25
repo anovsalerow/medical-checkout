@@ -9,6 +9,7 @@ import { ReviewsPage } from './pages/ReviewsPage';
 import { ContactPage } from './pages/ContactPage';
 import { ShopPage } from './pages/ShopPage';
 import { CheckoutPage } from './pages/CheckoutPage';
+import { ProfilePage } from './pages/ProfilePage';
 import { LoginPage } from './pages/LoginPage';
 import { Header } from './components/Header';
 import { useEffect } from "react";
@@ -37,6 +38,11 @@ function App() {
             <Route path={LINKS.checkout} element={
               <PrivateRoute>
                 <CheckoutPage />
+              </PrivateRoute>
+            }/>
+            <Route path={LINKS.profile} element={
+              <PrivateRoute>
+                <ProfilePage />
               </PrivateRoute>
             }/>
             <Route path={LINKS.login} element={<LoginPage />} />
