@@ -8,7 +8,7 @@ import signupIcon from '../assets/png/registration-32.png';
 import signinIcon from '../assets/png/login-30.png';
 import signoutIcon from '../assets/png/logout-48.png';
 
-const ENV = {
+const ENV_VAR = {
     BE_API: 'http://localhost:8080',
 }
 
