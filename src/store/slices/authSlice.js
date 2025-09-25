@@ -1,8 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {ENV_VAR} from '../../constants';
 
-const urlBE = 'http://localhost:8080'
+const BE_API = ENV_VAR.BE_API;
+
 export const fetchUser = createAsyncThunk("auth/fetchUser", async () => {
-    const res = await fetch(`${urlBE}/me`, { credentials: "include" });
+    const res = await fetch(`${BE_API}/me`, { credentials: "include" });
     if (!res.ok) return null;
     return await res.json();
 });
@@ -11,7 +13,7 @@ export const loginUser = createAsyncThunk(
     "auth/loginUser",
     async ({ email, password }, { rejectWithValue }) => {
         try {
-            const res = await fetch(`${urlBE}/login`, {
+            const res = await fetch(`${BE_API}/login`, {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
@@ -30,7 +32,7 @@ export const registrationUser = createAsyncThunk(
     "auth/registrationUser",
     async ({ email, password }, { rejectWithValue }) => {
         try {
-            const res = await fetch(`${urlBE}/register`, {
+            const res = await fetch(`${BE_API}/register`, {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
@@ -49,7 +51,7 @@ export const refreshToken = createAsyncThunk(
     "auth/refreshToken",
     async (_, { rejectWithValue }) => {
         try {
-            const res = await fetch(`${urlBE}/renewal`, {
+            const res = await fetch(`${BE_API}/renewal`, {
                 method: "POST",
                 credentials: "include",
             });
@@ -62,7 +64,7 @@ export const refreshToken = createAsyncThunk(
 );
 
 export const logoutUser = createAsyncThunk("auth/logoutUser", async () => {
-    await fetch(`${urlBE}/logout`, { method: "POST", credentials: "include" });
+    await fetch(`${BE_API}/logout`, { method: "POST", credentials: "include" });
     return null;
 });
 
