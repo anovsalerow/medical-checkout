@@ -10,15 +10,15 @@ import signoutIcon from '../assets/png/logout-48.png';
 
 const NAVBAR_LINKS = [
     {text: 'Homepage', path: '/'},
-    {text: 'About', path: '/'},
-    {text: 'Reviews', path: '/'},
-    {text: 'Contsct', path: '/'},
-    {text: 'Shop', path: '/'},
+    {text: 'About', path: '/about'},
+    {text: 'Reviews', path: '/reviews'},
+    {text: 'Contact', path: '/contact'},
+    {text: 'Shop', path: '/shop'},
 ]
 
 const LINKS = {
     homepage: '/',
-    checkout: '/',
+    checkout: '/checkout',
     login: '/login'
 };
 
