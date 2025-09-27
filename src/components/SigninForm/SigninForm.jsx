@@ -27,7 +27,7 @@ export const SigninForm = () => {
 
     useEffect(() => {
         if (user) {
-        navigate("/");
+        navigate("/checkout");
         }
     }, [user, navigate]);
 
