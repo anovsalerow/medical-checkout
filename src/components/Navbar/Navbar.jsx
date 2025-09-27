@@ -19,7 +19,7 @@ export const Navbar = () => {
     }
     if (loading) return null;
     const handleLogout = () => {
-        dispatch(logoutUser())
+        dispatch(logoutUser());
     };
 
     return (
