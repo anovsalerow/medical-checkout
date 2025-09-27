@@ -17,9 +17,17 @@ export const removeFromCart = createAsyncThunk("cart/removeFromCart", async (pro
     return await res.json();
 });
 
-export const checkoutCart = createAsyncThunk("cart/checkoutCart", async () => {
-    const res = await fetch(`${BE_API}/orders`, {
-        method: "POST",
+export const checkoutCart = createAsyncThunk("cart/checkoutCart", async (data) => {
+    const res = await fetch(`${BE_API}/cart/orders`, {
+        method: "PUT",
+        credentials: "include"
+    });
+    return await res.json();
+});
+
+export const addDemoProducts = createAsyncThunk("cart/addDemoProducts", async () => {
+    const res = await fetch(`${BE_API}/cart/demo`, {
+        method: "PUT",
         credentials: "include"
     });
     return await res.json();
@@ -33,7 +41,9 @@ const cartSlice = createSlice({
         error: null,
         successMessage: null
     },
-    reducers: {},
+    reducers: {
+        clearSuccessMessage: (state) => { state.successMessage = null; }
+    },
     extraReducers: (builder) => {
         builder
         .addCase(fetchCart.pending, (state) => {
