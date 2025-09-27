@@ -1,7 +1,7 @@
 import {useForm} from 'react-hook-form';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {fetchCart, removeFromCart, checkoutCart} from '../../store/slices/cartSlice.js';
+import {fetchCart, removeFromCart, checkoutCart, addDemoProducts} from '../../store/slices/cartSlice.js';
 import {joiResolver} from '@hookform/resolvers/joi';
 import {Input} from '../Input';
 import {InputRadio} from '../InputRadio';
@@ -12,34 +12,47 @@ import {SubmitButton} from '../SubmitButton';
 import { CheckoutFormValidationSchema } from '../Schemas/CheckoutFormValidationSchema.js';
 import styles from './_checkoutForm.module.scss';
 
-
-const handleOnSubmit = (data) => {console.log(data)};
-
 export const CheckoutForm = () => {
     const { items, loading, successMessage } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     const {
         register, 
         handleSubmit, 
+        reset,
         formState: {errors}
-    } = useForm({resolver: joiResolver(CheckoutFormValidationSchema), mode: 'onBlur'});
+    } = useForm({
+        resolver: joiResolver(CheckoutFormValidationSchema),
+        mode: 'onBlur'}
+    );
 
     useEffect(() => {
         dispatch(fetchCart());
     }, [dispatch]);
 
+    useEffect(() => {
+        if (successMessage) {
+            const timer = setTimeout(() => {
+                dispatch({ type: 'cart/clearSuccessMessage' });
+            }, 4000);
+            dispatch(addDemoProducts());
+
+            return () => clearTimeout(timer);
+        }
+    }, [successMessage, dispatch]);
+
     const handleRemoveItem = (itemId) => {
         dispatch(removeFromCart(itemId));
     };
 
-    const handleCheckout = () => {
-        dispatch(checkoutCart());
+    const handleCheckout = async(data) => {
+        dispatch(checkoutCart(data));
+        reset();
     };
 
     if (loading) return <p styles={styles.loading}>Loading</p>
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit(handleOnSubmit)}>
+        <form className={styles.form} onSubmit={handleSubmit(handleCheckout)}>
             <div className={styles.grid_cell}>
                 <ul className={styles.block_input__list}>
                     <li className={styles.block_input__title}>
@@ -112,13 +125,13 @@ export const CheckoutForm = () => {
                     </li>
                     <li className={styles.block_input__item}>
                         <Input 
-                            {...register('сountry')} 
+                            {...register('country')} 
                             type='address' 
-                            name='сountry' 
+                            name='country' 
                             placeholder='Country' 
                             legend='Country' 
                         />
-                        {errors.сountry && <p className={styles.validation_error}>{errors.сountry.message}</p>}
+                        {errors.country && <p className={styles.validation_error}>{errors.country.message}</p>}
                     </li>
                 </ul>
                 <ul className={styles.block_radio__list}>
@@ -126,28 +139,60 @@ export const CheckoutForm = () => {
                         <h2>Shipping Methode</h2>
                     </li>
                     <li className={styles.block_radio__item}>
-                        <InputRadio name='shippingMethod' label='Odeon Express' value='Odeon Express' />
+                        <InputRadio
+                            {...register('shippingMethod')}
+                            name='shippingMethod' 
+                            label='Odeon Express' 
+                            value='Odeon Express' 
+                        />
                     </li>
                     <li className={styles.block_radio__item}>
-                        <InputRadio name='shippingMethod' label='Gorgom Express' value='Gorgom Express' />
+                        <InputRadio 
+                            {...register('shippingMethod')}
+                            name='shippingMethod' 
+                            label='Gorgom Express' 
+                            value='Gorgom Express' 
+                        />
                     </li>
                     <li className={styles.block_radio__item}>
-                        <InputRadio name='shippingMethod' label='Cipay Jet' value='Cipay Jet' />
+                        <InputRadio 
+                            {...register('shippingMethod')}
+                            name='shippingMethod' 
+                            label='Cipay Jet' 
+                            value='Cipay Jet' 
+                        />
                     </li>
                     <li className={styles.block_radio__item}>
-                        <InputRadio name='shippingMethod' label='Eunioa Fast' value='Eunioa Fast' />
+                        <InputRadio 
+                            {...register('shippingMethod')}
+                            name='shippingMethod' 
+                            label='Eunioa Fast' 
+                            value='Eunioa Fast' 
+                        />
                     </li>
+                    {errors.shippingMethod && <p className={styles.validation_error}>{errors.shippingMethod.message}</p>}
                 </ul>
                 <ul className={styles.block_radio__list}>
                     <li className={styles.block_radio__title}>
                         <h2>Payment Methode</h2>
                     </li>
                     <li className={styles.block_radio__item}>
-                        <InputRadio name='paymentMethod' label='Credit Card' value='Credit Card' />
+                        <InputRadio 
+                            {...register('paymentMethod')}
+                            name='paymentMethod' 
+                            label='Credit Card' 
+                            value='Credit Card' 
+                        />
                     </li>
                     <li className={styles.block_radio__item}>
-                        <InputRadio name='paymentMethod' label='Paypal' value='Paypal' />
+                        <InputRadio
+                        {...register('paymentMethod')}
+                            name='paymentMethod' 
+                            label='Paypal' 
+                            value='Paypal' 
+                        />
                     </li>
+                    {errors.paymentMethod && <p className={styles.validation_error}>{errors.paymentMethod.message}</p>}
                 </ul>
             </div>
             <div className={styles.grid_cell}>
@@ -171,7 +216,7 @@ export const CheckoutForm = () => {
                         <CheckoutTotal data={items} />
                     </li>
                     <li className={styles.block_order__item}>
-                        <SubmitButton text="Checkout"/>
+                        <SubmitButton text={!successMessage ? "Checkout" : successMessage}/>
                         {successMessage && <p>{successMessage}</p>}
                     </li>
                 </ul>
