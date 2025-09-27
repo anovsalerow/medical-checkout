@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {useForm} from 'react-hook-form';
 import { useDispatch, useSelector } from "react-redux";
 import { registrationUser } from "../../store/slices/authSlice.js";
-import {addDemoProducts} from "../../store/slices/cartSlice.js";
+import {addDemoProducts} from '../../store/slices/cartSlice.js';
 import {joiResolver} from '@hookform/resolvers/joi';
 import { SignFormValidationSchema } from '../Schemas/SignFormValidationSchema.js';
 import { Input } from "../Input/index.js";
@@ -28,9 +28,10 @@ export const SignupForm = () => {
 
     useEffect(() => {
         if (user) {
+        dispatch(addDemoProducts());
         navigate("/checkout");
         }
-    }, [user, navigate]);
+    }, [user, navigate, dispatch]);
 
     return (
         <form onSubmit={handleSubmit(handleOnSubmit)} className={styles.form}>
