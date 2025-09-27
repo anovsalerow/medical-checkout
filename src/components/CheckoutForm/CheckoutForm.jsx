@@ -1,4 +1,7 @@
 import {useForm} from 'react-hook-form';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {fetchCart, removeFromCart, checkoutCart} from '../../store/slices/cartSlice.js';
 import {joiResolver} from '@hookform/resolvers/joi';
 import {Input} from '../Input';
 import {InputRadio} from '../InputRadio';
@@ -6,7 +9,6 @@ import {InputPromo} from '../InputPromo';
 import { CheckoutTotal } from '../CheckoutTotal';
 import {OrderSummary} from '../OrderSummary';
 import {SubmitButton} from '../SubmitButton';
-import {ORDER_SUMMARY, CHECKOUT_TOTAL} from '../../constants';
 import { CheckoutFormValidationSchema } from '../Schemas/CheckoutFormValidationSchema.js';
 import styles from './_checkoutForm.module.scss';
 
@@ -14,11 +16,27 @@ import styles from './_checkoutForm.module.scss';
 const handleOnSubmit = (data) => {console.log(data)};
 
 export const CheckoutForm = () => {
+    const { items, loading, successMessage } = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
     const {
         register, 
         handleSubmit, 
         formState: {errors}
-    } = useForm({resolver: joiResolver(CheckoutFormValidationSchema), mode: 'onBlur'})
+    } = useForm({resolver: joiResolver(CheckoutFormValidationSchema), mode: 'onBlur'});
+
+    useEffect(() => {
+        dispatch(fetchCart());
+    }, [dispatch]);
+
+    const handleRemoveItem = (itemId) => {
+        dispatch(removeFromCart(itemId));
+    };
+
+    const handleCheckout = () => {
+        dispatch(checkoutCart());
+    };
+
+    if (loading) return <p styles={styles.loading}>Loading</p>
 
     return (
         <form className={styles.form} onSubmit={handleSubmit(handleOnSubmit)}>
@@ -138,7 +156,7 @@ export const CheckoutForm = () => {
                         <h2>Order Summary</h2>
                     </li>
                     <li className={styles.block_order__item}>
-                        <OrderSummary data={ORDER_SUMMARY} />
+                        <OrderSummary data={items} onClick={(itemId) => handleRemoveItem(itemId)} />
                     </li>
                 </ul>
                 <ul className={styles.block_payment__list}>
@@ -150,10 +168,11 @@ export const CheckoutForm = () => {
                         {errors.promoCode && <p className={styles.validation_error}>{errors.promoCode.message}</p>}
                     </li>
                     <li className={styles.block_order__item}>
-                        <CheckoutTotal data={CHECKOUT_TOTAL} />
+                        <CheckoutTotal data={items} />
                     </li>
                     <li className={styles.block_order__item}>
                         <SubmitButton text="Checkout"/>
+                        {successMessage && <p>{successMessage}</p>}
                     </li>
                 </ul>
             </div>
