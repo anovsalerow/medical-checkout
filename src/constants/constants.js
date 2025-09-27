@@ -7,6 +7,7 @@ import profileIcon from "../assets/svg/profile_icom_24x24.svg";
 import signupIcon from '../assets/png/registration-32.png';
 import signinIcon from '../assets/png/login-30.png';
 import signoutIcon from '../assets/png/logout-48.png';
+import trashIcon from '../assets/png/trash-24.png';
 
 const ENV_VAR = {
     BE_API: 'http://localhost:8080',
@@ -106,4 +107,8 @@ const SIGN_LINKS = {
     }
 };
 
-export {ENV_VAR, NAVBAR_LINKS, LINKS, SHOPDOC, ABOUT_US, FAQ, BLOG, SOCIAL_LIST, ICON_LINKS, SIGN_LINKS};
+const CONTENT_ICONS = {
+    trash: trashIcon,
+}
+
+export {ENV_VAR, NAVBAR_LINKS, LINKS, SHOPDOC, ABOUT_US, FAQ, BLOG, SOCIAL_LIST, ICON_LINKS, SIGN_LINKS, CONTENT_ICONS};
