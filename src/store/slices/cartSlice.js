@@ -5,7 +5,10 @@ const BE_API = ENV_VAR.BE_API;
 
 export const fetchCart = createAsyncThunk("cart/fetchCart", 
     async () => {
-        const res = await fetch(`${BE_API}/cart`, { credentials: "include" });
+        const res = await fetch(`${BE_API}/cart`, {
+            method: "GET", 
+            credentials: "include" 
+        });
         return await res.json();
     });
 

@@ -4,7 +4,10 @@ import {ENV_VAR} from '../../constants';
 const BE_API = ENV_VAR.BE_API;
 
 export const fetchUser = createAsyncThunk("auth/fetchUser", async () => {
-    const res = await fetch(`${BE_API}/me`, { credentials: "include" });
+    const res = await fetch(`${BE_API}/me`, { 
+        method: "GET",
+        credentials: "include" 
+    });
     if (!res.ok) return null;
     return await res.json();
 });
