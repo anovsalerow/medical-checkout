@@ -28,10 +28,10 @@ const ORDER_SUMMARY = [
     {title: 'Acetylcysteine Pill', type: "15 Capsul", color: 'White', amount: '4x', costs: '$140'},
 ];
 
-const CHECKOUT_TOTAL = [
-    {title: 'Sub total', costs: '$240'},
-    {title: 'Shipping Fee', costs: '$40'},
-    {title: 'Total', costs: '$280'},
-];
+const CHECKOUT_TOTAL = {
+    'subTotal': 240,
+    'shippingFee': 40,
+    'sotal': 280
+};
 
 export {ADVANTAGES, ORDER_SUMMARY, CHECKOUT_TOTAL};
