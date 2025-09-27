@@ -24,7 +24,6 @@ export const SignupForm = () => {
 
     const handleOnSubmit = (data) => {
         dispatch(registrationUser(data));
-        dispatch(addDemoProducts());
     };
 
     useEffect(() => {

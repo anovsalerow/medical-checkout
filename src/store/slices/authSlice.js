@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {ENV_VAR} from '../../constants';
 
+import {addDemoProducts} from '../slices/cartSlice.js';
+
 const BE_API = ENV_VAR.BE_API;
 
 export const fetchUser = createAsyncThunk("auth/fetchUser", async () => {
@@ -43,6 +45,7 @@ export const registrationUser = createAsyncThunk(
             });
 
             if (!res.ok) throw new Error("Email already exist");
+            dispatch(addDemoProducts());
             return await res.json();
         } catch (err) {
             return rejectWithValue(err.message);
