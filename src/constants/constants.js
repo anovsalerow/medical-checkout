@@ -10,7 +10,8 @@ import signoutIcon from '../assets/png/logout-48.png';
 import trashIcon from '../assets/png/trash-24.png';
 
 const ENV_VAR = {
-    BE_API: 'http://localhost:8080',
+    BE_API: 'https://medical-checkout-be.onrender.com',
+    // BE_API: 'http://localhost:8080',
 }
 
 const NAVBAR_LINKS = [
