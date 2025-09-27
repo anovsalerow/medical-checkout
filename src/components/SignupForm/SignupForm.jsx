@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import {useForm} from 'react-hook-form';
 import { useDispatch, useSelector } from "react-redux";
 import { registrationUser } from "../../store/slices/authSlice.js";
+import {addDemoProducts} from "../../store/slices/cartSlice.js";
 import {joiResolver} from '@hookform/resolvers/joi';
 import { SignFormValidationSchema } from '../Schemas/SignFormValidationSchema.js';
 import { Input } from "../Input/index.js";
@@ -23,6 +24,7 @@ export const SignupForm = () => {
 
     const handleOnSubmit = (data) => {
         dispatch(registrationUser(data));
+        dispatch(addDemoProducts());
     };
 
     useEffect(() => {
@@ -57,7 +59,7 @@ export const SignupForm = () => {
                     {errors.password && <p className={styles.validation_error}>{errors.password.message}</p>}
                 </li>
                 <li className={styles.block_input__item}>
-                    <SubmitButton text={loading ? "Loading..." : "Login"}/>
+                    <SubmitButton text={loading ? "Loading..." : "Registration"}/>
                     {error && <p className={styles.validation_error}>{error}</p>}
                 </li>
             </ul>
