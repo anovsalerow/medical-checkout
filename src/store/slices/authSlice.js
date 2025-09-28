@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {t} from '../../utils/i18n.js';
 import {ENV_VAR} from '../../constants';
 
 const BE_API = ENV_VAR.BE_API;
@@ -26,7 +27,7 @@ export const loginUser = createAsyncThunk(
             if (!res.ok) throw new Error("Invalid email or password");
             return await res.json();
         } catch (err) {
-            return rejectWithValue(err.message);
+            return rejectWithValue(t(err.message));
         }
     }
 );
@@ -45,7 +46,7 @@ export const registrationUser = createAsyncThunk(
             if (!res.ok) throw new Error("Email already exist");
             return await res.json();
         } catch (err) {
-            return rejectWithValue(err.message);
+            return rejectWithValue(t(err.message));
         }
     }
 )
@@ -61,7 +62,7 @@ export const refreshToken = createAsyncThunk(
             if (!res.ok) throw new Error("Refresh failed");
             return await res.json();
         } catch (err) {
-            return rejectWithValue(err.message);
+            return rejectWithValue(t(err.message));
         }
     }
 );
@@ -96,13 +97,13 @@ const authSlice = createSlice({
             state.user = action.payload.user;
         })
         .addCase(loginUser.rejected, (state, action) => {
-            state.error = action.payload || "Login failed";
+            state.error = action.payload || t("Login failed");
         })
         .addCase(registrationUser.fulfilled, (state, action) => {
             state.user = action.payload.user;
         })
         .addCase(registrationUser.rejected, (state, action) => {
-            state.error = action.payload || "Registration failed";
+            state.error = action.payload || t("Registration failed");
         })
         .addCase(logoutUser.fulfilled, (state) => {
             state.user = null;

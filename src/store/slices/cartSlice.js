@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {t} from '../../utils/i18n.js';
 import {ENV_VAR} from '../../constants';
 
 const BE_API = ENV_VAR.BE_API;
@@ -61,7 +62,7 @@ const cartSlice = createSlice({
         })
         .addCase(checkoutCart.fulfilled, (state, action) => {
             state.items = [];
-            state.successMessage = action.payload.message;
+            state.successMessage = t(action.payload.message);
         });
     }
 });

@@ -6,6 +6,7 @@ import { logoutUser } from "../../store/slices/authSlice.js";
 
 import {NAVBAR_LINKS, LINKS, ICON_LINKS, SIGN_LINKS} from '../../constants';
 import styles from './_navbar.module.scss';
+import {t} from '../../utils/i18n.js';
 
 
 export const Navbar = () => {
@@ -26,14 +27,14 @@ export const Navbar = () => {
         <nav className={styles.navbar}>
             <div className={styles.wrapper}>
                 <Link to={LINKS.homepage} className={`${styles.logo} `}>
-                    Shopdoc
+                    {t("Shopdoc")}
                 </Link>
                 <div className={`${styles.nav_content} ${isMenuOpen ? styles.open : ''}`}>
                     <ul className={styles.nav_links}>
                         {NAVBAR_LINKS.map(({ text, path }, index) => (
                         <li key={index}>
                             <Link to={path} onClick={() => setIsMenuOpen(false)}>
-                                {text}
+                                {t(text)}
                             </Link>
                         </li>
                         ))}
@@ -43,10 +44,10 @@ export const Navbar = () => {
                     {!user ? (
                     <>
                         <Link to={SIGN_LINKS.signin.path} className={styles.icon_sign}>
-                            <img src={SIGN_LINKS.signin.icon} alt={`${SIGN_LINKS.signin.name}`} />
+                            <img src={SIGN_LINKS.signin.icon} alt={t(`${SIGN_LINKS.signin.name}`)} />
                         </Link>
                         <Link to={SIGN_LINKS.signup.path} className={styles.icon_sign}>
-                            <img src={SIGN_LINKS.signup.icon} alt={`${SIGN_LINKS.signup.name}`} />
+                            <img src={SIGN_LINKS.signup.icon} alt={t(`${SIGN_LINKS.signup.name}`)} />
                         </Link>
                     </>
                     ) : (
@@ -55,14 +56,14 @@ export const Navbar = () => {
                             {ICON_LINKS.map(({ name, icon, path, redMark }, index) => (
                                 <li key={index}>
                                     <Link to={path} className={redMark ? styles.red_mark : ''}>
-                                        <img src={icon} alt={`${name} logo`} />
+                                        <img src={icon} alt={t(`${name} logo`)} />
                                         {redMark && <span />}
                                     </Link>
                                 </li>
                             ))}
                         </ul>
                         <Link to={SIGN_LINKS.signout.path} className={styles.icon_sign} onClick={handleLogout}>
-                            <img src={SIGN_LINKS.signout.icon} alt={`${SIGN_LINKS.signout.name}`} />
+                            <img src={SIGN_LINKS.signout.icon} alt={(t`${SIGN_LINKS.signout.name}`)} />
                         </Link>
                         <button
                             className={styles.hamburger}

@@ -1,6 +1,7 @@
 import styles from './_orderSummary.module.scss';
 import { CONTENT_ICONS } from '../../constants';
 import {Image} from '../Image';
+import {t} from '../../utils/i18n.js';
 
 export const OrderSummary = ({data, onClick}) => {
     return(
@@ -9,7 +10,7 @@ export const OrderSummary = ({data, onClick}) => {
             ? (<li className={styles.order__item}>
                     <div className={styles.order__container}>
                         <div className={styles.order__description}>
-                            <span className={styles.order__title}>Cart is empty</span>
+                            <span className={styles.order__title}>{t("Cart is empty")}</span>
                         </div>
                     </div>
                 </li>)
@@ -18,11 +19,11 @@ export const OrderSummary = ({data, onClick}) => {
                     <div className={styles.order__container}>
                         <span className={styles.order__icon} />
                         <div className={styles.order__description}>
-                            <span className={styles.order__title}>{item.productId.title}</span>
+                            <span className={styles.order__title}>{t(item.productId.title)}</span>
                             <div className={styles.order__detail}>
-                                <span className={styles.order__detail_text}>{item.productId.formFactor}</span>
+                                <span className={styles.order__detail_text}>{t(item.productId.formFactor)}</span>
                                 <span className={styles.order__dot} />
-                                <span className={styles.order__detail_text}>{item.productId.color}</span>
+                                <span className={styles.order__detail_text}>{t(item.productId.color)}</span>
                                 <span className={styles.order__dot} />
                                 <span className={styles.order__detail_text}>{`${item.quantity}x`}</span>
                             </div>

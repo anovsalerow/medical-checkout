@@ -11,6 +11,7 @@ import {OrderSummary} from '../OrderSummary';
 import {SubmitButton} from '../SubmitButton';
 import { CheckoutFormValidationSchema } from '../Schemas/CheckoutFormValidationSchema.js';
 import styles from './_checkoutForm.module.scss';
+import {t} from '../../utils/i18n.js';
 
 export const CheckoutForm = () => {
     const { items, loading, successMessage } = useSelector((state) => state.cart);
@@ -49,14 +50,14 @@ export const CheckoutForm = () => {
         reset();
     };
 
-    if (loading) return <p styles={styles.loading}>Loading</p>
+    if (loading) return <p styles={styles.loading}>{t("Loading")}</p>
 
     return (
         <form className={styles.form} onSubmit={handleSubmit(handleCheckout)}>
             <div className={styles.grid_cell}>
                 <ul className={styles.block_input__list}>
                     <li className={styles.block_input__title}>
-                        <h2>Personal Details</h2>
+                        <h2>{t("Personal Details")}</h2>
                     </li>
                     <li className={styles.block_input__item}>
                         <Input 
@@ -66,7 +67,7 @@ export const CheckoutForm = () => {
                             placeholder='Full Name' 
                             legend='Full Name' 
                         />
-                        {errors.fullName && <p className={styles.validation_error}>{errors.fullName.message}</p>}
+                        {errors.fullName && <p className={styles.validation_error}>{t(errors.fullName.message)}</p>}
                     </li>
                     <li className={styles.block_input__item}>
                         <Input 
@@ -76,7 +77,7 @@ export const CheckoutForm = () => {
                             placeholder='Email Address' 
                             legend='Email Address' 
                         />
-                        {errors.email && <p className={styles.validation_error}>{errors.email.message}</p>}
+                        {errors.email && <p className={styles.validation_error}>{t(errors.email.message)}</p>}
                     </li>
                     <li className={styles.block_input__item}>
                         <Input 
@@ -86,12 +87,14 @@ export const CheckoutForm = () => {
                             placeholder='Phone number' 
                             legend='Phone number' 
                         />
-                        {errors.phoneNumber && <p className={styles.validation_error}>{errors.phoneNumber.message}</p>}
+                        {errors.phoneNumber && <p className={styles.validation_error}>
+                            {t(errors.phoneNumber.message)}
+                        </p>}
                     </li>
                 </ul>
                 <ul className={styles.block_input__list}>
                     <li className={styles.block_input__title}>
-                        <h2>Shipping Details</h2>
+                        <h2>{t("Shipping Details")}</h2>
                     </li>
                     <li className={styles.block_input__item}>
                         <Input 
@@ -101,7 +104,7 @@ export const CheckoutForm = () => {
                             placeholder='Street Address' 
                             legend='Street Address' 
                         />
-                        {errors.address && <p className={styles.validation_error}>{errors.address.message}</p>}
+                        {errors.address && <p className={styles.validation_error}>{t(errors.address.message)}</p>}
                     </li>
                     <li className={styles.block_input__item_small}>
                         <Input 
@@ -111,7 +114,7 @@ export const CheckoutForm = () => {
                             placeholder='City' 
                             legend='City' 
                         />
-                        {errors.city && <p className={styles.validation_error}>{errors.city.message}</p>}
+                        {errors.city && <p className={styles.validation_error}>{t(errors.city.message)}</p>}
                     </li>
                     <li className={styles.block_input__item_small}>
                         <Input 
@@ -121,7 +124,7 @@ export const CheckoutForm = () => {
                             placeholder='Zip Code' 
                             legend='Zip Code' 
                         />
-                        {errors.zipCode && <p className={styles.validation_error}>{errors.zipCode.message}</p>}
+                        {errors.zipCode && <p className={styles.validation_error}>{t(errors.zipCode.message)}</p>}
                     </li>
                     <li className={styles.block_input__item}>
                         <Input 
@@ -131,12 +134,12 @@ export const CheckoutForm = () => {
                             placeholder='Country' 
                             legend='Country' 
                         />
-                        {errors.country && <p className={styles.validation_error}>{errors.country.message}</p>}
+                        {errors.country && <p className={styles.validation_error}>{t(errors.country.message)}</p>}
                     </li>
                 </ul>
                 <ul className={styles.block_radio__list}>
                     <li className={styles.block_radio__subtitle}>
-                        <h2>Shipping Methode</h2>
+                        <h2>{t("Shipping Methode")}</h2>
                     </li>
                     <li className={styles.block_radio__item}>
                         <InputRadio
@@ -170,11 +173,11 @@ export const CheckoutForm = () => {
                             value='Eunioa Fast' 
                         />
                     </li>
-                    {errors.shippingMethod && <p className={styles.validation_error}>{errors.shippingMethod.message}</p>}
+                    {errors.shippingMethod && <p className={styles.validation_error}>{t(errors.shippingMethod.message)}</p>}
                 </ul>
                 <ul className={styles.block_radio__list}>
                     <li className={styles.block_radio__title}>
-                        <h2>Payment Methode</h2>
+                        <h2>{t("Payment Methode")}</h2>
                     </li>
                     <li className={styles.block_radio__item}>
                         <InputRadio 
@@ -192,13 +195,13 @@ export const CheckoutForm = () => {
                             value='Paypal' 
                         />
                     </li>
-                    {errors.paymentMethod && <p className={styles.validation_error}>{errors.paymentMethod.message}</p>}
+                    {errors.paymentMethod && <p className={styles.validation_error}>{t(errors.paymentMethod.message)}</p>}
                 </ul>
             </div>
             <div className={styles.grid_cell}>
                 <ul className={styles.block_order__list}>
                     <li className={styles.block_order__title}>
-                        <h2>Order Summary</h2>
+                        <h2>{t("Order Summary")}</h2>
                     </li>
                     <li className={styles.block_order__item}>
                         <OrderSummary data={items} onClick={(itemId) => handleRemoveItem(itemId)} />
@@ -206,18 +209,17 @@ export const CheckoutForm = () => {
                 </ul>
                 <ul className={styles.block_payment__list}>
                     <li className={styles.block_order__title}>
-                        <h2>Apply Promocode</h2>
+                        <h2>{t("Apply Promocode")}</h2>
                     </li>
                     <li className={styles.block_order__item}>
                         <InputPromo {...register('promoCode')} />
-                        {errors.promoCode && <p className={styles.validation_error}>{errors.promoCode.message}</p>}
+                        {errors.promoCode && <p className={styles.validation_error}>{t(errors.promoCode.message)}</p>}
                     </li>
                     <li className={styles.block_order__item}>
                         <CheckoutTotal data={items} />
                     </li>
                     <li className={styles.block_order__item}>
-                        <SubmitButton text={!successMessage ? "Checkout" : successMessage}/>
-                        {successMessage && <p>{successMessage}</p>}
+                        <SubmitButton text={!successMessage ? t("Checkout") : t(successMessage)}/>
                     </li>
                 </ul>
             </div>

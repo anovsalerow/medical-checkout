@@ -1,4 +1,5 @@
 import styles from './_submitButton.module.scss';
+import {t} from '../../utils/i18n.js';
 
 export const SubmitButton = ({
     type = 'submit',
@@ -7,7 +8,7 @@ export const SubmitButton = ({
 }) => {
     return (
         <button className={styles.submit_btn} type={type} disabled={disabled}>
-            {text}
+            {t(text)}
         </button>
     );
 }

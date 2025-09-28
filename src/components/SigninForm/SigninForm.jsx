@@ -8,6 +8,7 @@ import { SignFormValidationSchema } from '../Schemas/SignFormValidationSchema.js
 import { Input } from "../Input/index.js";
 import { SubmitButton } from "../SubmitButton/index.js";
 import styles from './_signinForm.module.scss';
+import {t} from '../../utils/i18n.js';
 
 export const SigninForm = () => {
     const navigate = useNavigate();
@@ -43,7 +44,7 @@ export const SigninForm = () => {
                         legend='Email Address'
                         autoComplete="email" 
                     />
-                    {errors.email && <p className={styles.validation_error}>{errors.email.message}</p>}
+                    {errors.email && <p className={styles.validation_error}>{t(errors.email.message)}</p>}
                 </li>
                 <li className={styles.block_input__item}>
                     <Input 
@@ -54,11 +55,11 @@ export const SigninForm = () => {
                         legend='Password'
                         autoComplete="current-password"
                     />
-                    {errors.password && <p className={styles.validation_error}>{errors.password.message}</p>}
+                    {errors.password && <p className={styles.validation_error}>{t(errors.password.message)}</p>}
                 </li>
                 <li className={styles.block_input__item}>
                     <SubmitButton text={loading ? "Loading..." : "Login"}/>
-                    {error && <p className={styles.validation_error}>{error}</p>}
+                    {error && <p className={styles.validation_error}>{t(error)}</p>}
                 </li>
             </ul>
         </form>
